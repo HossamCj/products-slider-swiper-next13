@@ -8,7 +8,7 @@ import imagePlaceholder from "../assets/images/ImagePlaceholder.svg";
 
 import productData from "../../public/fakeData/data.json";
 
-const ProductsSlider = () => {
+const ProductsSlider = ({header, showAllLink, products}) => {
     const [hoveredCard, setHoveredCard] = useState(null);
 
     const discount = 20; // Placeholder for the price, replace with actual data from the database.
@@ -65,12 +65,13 @@ const ProductsSlider = () => {
             }
         });
     }, []);
+
     return (
         <section className="grid grid-cols-1 container w-[1260px] max-md:w-auto h-[626px]">
             <div className="flex justify-between">
-                <h2 className="text-3xl font-bold text-[#29292E]">Header</h2>
+                <h2 className="text-3xl font-bold text-[#29292E]">{header}</h2>
                 <Link
-                    href="/"
+                    href={showAllLink}
                     alt="Show All Link"
                     className="text-lg font-bold text-[#237943]">
                     Show All
@@ -78,7 +79,7 @@ const ProductsSlider = () => {
             </div>
             <div className="container mySwiper swiper w-[1200px] max-xl:max-w-4xl max-lg:max-w-2xl max-md:max-w-xl max-sm:max-w-sm h-[557px] pb-5 transition-all ease-in-out duration-300">
                 <div className="swiper-wrapper">
-                    {productData.products.map((product, index) => (
+                    {products.products.map((product, index) => (
                         <div
                             key={index}
                             onMouseEnter={() => setHoveredCard(index)}
